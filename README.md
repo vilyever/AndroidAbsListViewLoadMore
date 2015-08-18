@@ -1,5 +1,5 @@
 # AndroidAbsListViewLoadMore
-ScrollView/ListView/GridView添加加载更多
+ListView/GridView添加加载更多
 
 ## Import
 [JitPack](https://jitpack.io/)
