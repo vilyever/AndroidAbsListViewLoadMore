@@ -1,5 +1,5 @@
 # AndroidAbsListViewLoadMore
-ScrollView/ListView/GridView添加加载更多
+ListView/GridView添加加载更多
 
 ## Import
 [JitPack](https://jitpack.io/)
@@ -17,19 +17,18 @@ Step 2. Add the dependency in the form
 
 ```gradle
 dependencies {
-  compile 'com.github.vilyever:AndroidAbsListViewLoadMore:1.0.1'
+  compile 'com.github.vilyever:AndroidAbsListViewLoadMore:1.0.2'
 }
 ```
 
 ## Usage
 ```java
-AbsListView_VDLoadMore.loadMoreDelegate(listView, new AbsListView_VDLoadMore.LoadMoreDelegate() {
-    @Override
-    public void requireLoadMoreFromAbsListView(AbsListView absListView) {
-      // Todo
-    }
+AbsListView_VDLoadMore.addLoadMoreDelegate(listView, new AbsListView_VDLoadMore.Delegate() {
+  @Override
+  public void requireLoadMoreFromAbsListView(AbsListView absListView) {
+    // Todo
+  }
 });
-
 ```
 ## License
 
