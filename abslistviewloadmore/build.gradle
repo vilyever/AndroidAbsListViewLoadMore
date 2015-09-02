@@ -1,8 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 
-group = 'com.github.vilyever'
-version = "1.0.2"
 
 android {
     compileSdkVersion 22
@@ -12,7 +9,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0.2"
+        versionName "${release_version}"
     }
     buildTypes {
         release {
@@ -27,25 +24,34 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.1'
 }
 
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.vilyever'
+version = "${release_version}"
+
+
 // build a jar with source files
-task sourcesJar(type: Jar) {
+task sourceJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
 
-task javadoc(type: Javadoc) {
-    failOnError  false
-    source = android.sourceSets.main.java.sourceFiles
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-// build a jar with javadoc
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
 artifacts {
-    archives sourcesJar
-    archives javadocJar
+    archives sourceJar
+}
+
+configurations {
+    published
+}
+
+configure(install.repositories.mavenInstaller) {
+    pom.project {
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                distribution 'repo'
+            }
+        }
+    }
 }

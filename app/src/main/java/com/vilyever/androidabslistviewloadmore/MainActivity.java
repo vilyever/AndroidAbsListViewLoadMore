@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AbsListView_VDLoadMore.addLoadMoreDelegate(listView, new AbsListView_VDLoadMore.Delegate() {
+        AbsListView_VDLoadMore.addLoadMoreDelegate(listView, new AbsListView_VDLoadMore.LoadMoreDelegate() {
             @Override
             public void requireLoadMoreFromAbsListView(AbsListView absListView) {
 

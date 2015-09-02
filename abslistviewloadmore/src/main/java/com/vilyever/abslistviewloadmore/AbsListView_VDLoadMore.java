@@ -11,15 +11,12 @@ import android.widget.AbsListView;
 public class AbsListView_VDLoadMore implements AbsListView.OnScrollListener {
     private final AbsListView_VDLoadMore self = this;
 
-    private Delegate delegate;
+    private LoadMoreDelegate delegate;
     private AbsListView.OnScrollListener onScrollListener;
 
     private boolean isScrollToLastItem = false;
 
     /* #Constructors */
-    public AbsListView_VDLoadMore() {
-        // Required empty public constructor
-    }
 
     /* #Overrides */    
     
@@ -29,7 +26,7 @@ public class AbsListView_VDLoadMore implements AbsListView.OnScrollListener {
     // AbsListView.OnScrollListener
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-        if (self.onScrollListener != null) { // 若传入onScrollListener不为空，调用改Listener的相应方法
+        if (self.onScrollListener != null) { // 若传入onScrollListener不为空，调用该Listener的相应方法
             self.onScrollListener.onScrollStateChanged(view, scrollState);
         }
 
@@ -43,7 +40,7 @@ public class AbsListView_VDLoadMore implements AbsListView.OnScrollListener {
 
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-        if (self.onScrollListener != null) { // 若传入onScrollListener不为空，调用改Listener的相应方法
+        if (self.onScrollListener != null) { // 若传入onScrollListener不为空，调用该Listener的相应方法
             self.onScrollListener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
         }
 
@@ -53,8 +50,8 @@ public class AbsListView_VDLoadMore implements AbsListView.OnScrollListener {
     /* #Private Methods */    
     
     /* #Public Methods */
-    public static void addLoadMoreDelegate(AbsListView absListView, Delegate delegate) {
-        addLoadMoreDelegate(absListView, delegate, null);
+    public static AbsListView_VDLoadMore addLoadMoreDelegate(AbsListView absListView, LoadMoreDelegate delegate) {
+        return addLoadMoreDelegate(absListView, delegate, null);
     }
 
     /**
@@ -62,18 +59,20 @@ public class AbsListView_VDLoadMore implements AbsListView.OnScrollListener {
      * @param delegate LoadMore回调
      * @param originalOnScrollListener 若需要监听onScrollListener
      */
-    public static void addLoadMoreDelegate(AbsListView absListView, Delegate delegate, AbsListView.OnScrollListener originalOnScrollListener) {
+    public static AbsListView_VDLoadMore addLoadMoreDelegate(AbsListView absListView, LoadMoreDelegate delegate, AbsListView.OnScrollListener originalOnScrollListener) {
         AbsListView_VDLoadMore loadMore = new AbsListView_VDLoadMore();
         loadMore.delegate = delegate;
         loadMore.onScrollListener = originalOnScrollListener;
 
         absListView.setOnScrollListener(loadMore);
+
+        return loadMore;
     }
 
     /* #Classes */
 
     /* #Interfaces */
-    public interface Delegate {
+    public interface LoadMoreDelegate {
         void requireLoadMoreFromAbsListView(AbsListView absListView);
     }
      
