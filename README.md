@@ -26,7 +26,7 @@ dependencies {
 AbsListView_VDLoadMore.addLoadMoreDelegate(listView, new AbsListView_VDLoadMore.LoadMoreDelegate() {
   @Override
   public void requireLoadMoreFromAbsListView(AbsListView absListView) {
-    // Todo
+    // TODO
   }
 });
 ```
