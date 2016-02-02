@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.vilyever.abslistviewloadmore.AbsListView_VDLoadMore;
+import com.vilyever.abslistviewloadmore.VDAbsListViewLoadMore;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,9 +18,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AbsListView_VDLoadMore.addLoadMoreDelegate(listView, new AbsListView_VDLoadMore.LoadMoreDelegate() {
+        VDAbsListViewLoadMore.addLoadMoreDelegate(listView, new VDAbsListViewLoadMore.LoadMoreDelegate() {
             @Override
-            public void requireLoadMoreFromAbsListView(AbsListView absListView) {
+            public void requireLoadMore(AbsListView absListView) {
 
             }
         });
