@@ -17,17 +17,17 @@ Step 2. Add the dependency in the form
 
 ```gradle
 dependencies {
-  compile 'com.github.vilyever:AndroidAbsListViewLoadMore:1.0.3'
+  compile 'com.github.vilyever:AndroidAbsListViewLoadMore:1.0.4'
 }
 ```
 
 ## Usage
 ```java
-AbsListView_VDLoadMore.addLoadMoreDelegate(listView, new AbsListView_VDLoadMore.LoadMoreDelegate() {
-  @Override
-  public void requireLoadMore(AbsListView absListView) {
-    // TODO
-  }
+VDAbsListViewLoadMore.addLoadMoreDelegate(listView, new VDAbsListViewLoadMore.LoadMoreDelegate() {
+    @Override
+    public void requireLoadMore(AbsListView absListView) {
+
+    }
 });
 ```
 

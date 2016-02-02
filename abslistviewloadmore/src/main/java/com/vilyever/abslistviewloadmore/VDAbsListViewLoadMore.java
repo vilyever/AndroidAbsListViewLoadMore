@@ -1,5 +1,6 @@
 package com.vilyever.abslistviewloadmore;
 
+import android.support.annotation.NonNull;
 import android.widget.AbsListView;
 
 /**
@@ -13,7 +14,7 @@ public class VDAbsListViewLoadMore implements AbsListView.OnScrollListener {
 
     /* Public Methods */
     /** @see #addLoadMoreDelegate(AbsListView, LoadMoreDelegate, AbsListView.OnScrollListener)  */
-    public static VDAbsListViewLoadMore addLoadMoreDelegate(AbsListView absListView, LoadMoreDelegate delegate) {
+    public static VDAbsListViewLoadMore addLoadMoreDelegate(@NonNull AbsListView absListView, @NonNull LoadMoreDelegate delegate) {
         return addLoadMoreDelegate(absListView, delegate, null);
     }
 
@@ -23,7 +24,7 @@ public class VDAbsListViewLoadMore implements AbsListView.OnScrollListener {
      * @param delegate LoadMore回调
      * @param originalOnScrollListener 若需要监听onScrollListener
      */
-    public static VDAbsListViewLoadMore addLoadMoreDelegate(AbsListView absListView, LoadMoreDelegate delegate, AbsListView.OnScrollListener originalOnScrollListener) {
+    public static VDAbsListViewLoadMore addLoadMoreDelegate(@NonNull AbsListView absListView, @NonNull LoadMoreDelegate delegate, AbsListView.OnScrollListener originalOnScrollListener) {
         VDAbsListViewLoadMore loadMore = new VDAbsListViewLoadMore();
         loadMore.setDelegate(delegate);
         loadMore.setOnScrollListener(originalOnScrollListener);

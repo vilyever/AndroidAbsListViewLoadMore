@@ -1,27 +1,47 @@
 package com.vilyever.androidabslistviewloadmore;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.vilyever.abslistviewloadmore.VDAbsListViewLoadMore;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private ListView listView;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        data = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            data.add("test " + i);
+        }
+
+        listView = (ListView) findViewById(R.id.listView);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
+        listView.setAdapter(adapter);
+
         VDAbsListViewLoadMore.addLoadMoreDelegate(listView, new VDAbsListViewLoadMore.LoadMoreDelegate() {
             @Override
             public void requireLoadMore(AbsListView absListView) {
-
+                Toast.makeText(MainActivity.this, "require load more", Toast.LENGTH_LONG).show();
+                int size = data.size();
+                for (int i = size; i < size + 50; i++) {
+                    data.add("test " + i);
+                }
+                adapter.notifyDataSetChanged();
             }
         });
     }
